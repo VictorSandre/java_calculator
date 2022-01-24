@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane prefHeight="200.0" prefWidth="200.0" 
+            xmlns="http://javafx.com/javafx/17" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="me.calculator.CalculatorController">
+   <top>
+      <Label fx:id="mathematicalExpressionLabel" text="" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox id="operationPad" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="133.0">
+                     <children>
+                        <Button fx:id="inputZero" text="0" onAction="#addZeroToExpression"/>
+                        <Button fx:id="inputOne" text="1" onAction="#addOneToExpression"/>
+                        <Button fx:id="inputTwo" text="2" onAction="#addTwoToExpression"/>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="inputThree" text="3" onAction="#addThreeToExpression"/>
+                        <Button fx:id="inputFour" text="4" onAction="#addFourToExpression"/>
+                        <Button fx:id="inputFive" text="5" onAction="#addFiveToExpression"/>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="inputSix" text="6" onAction="#addSixToExpression"/>
+                        <Button fx:id="inputSeven" text="7" onAction="#addSevenToExpression"/>
+                        <Button fx:id="inputEight" text="8" onAction="#addEightToExpression"/>
+                     </children>
+                  </HBox>
+                  <Button fx:id="inputNine" text="9" onAction="#addNineToExpression"/>
+               </children>
+            </VBox>
+            <VBox id="numericPad" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="inputPlus" text="+"  onAction="#addPlusToExpression"/>
+                  <Button fx:id="inputMinux" text="-"  onAction="#addMinusToExpression"/>
+                  <Button fx:id="inputMultiplication" text="*"  onAction="#addMultiplicationToExpression"/>
+                  <Button fx:id="inputDivision" text="/"  onAction="#addDivisionToExpression"/>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="compute" text="enter" onAction="#computeResult"/>
+            <Button fx:id="clear" text="clear" onAction="#clearMathematicalExpression"/>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
