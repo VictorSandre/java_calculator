@@ -1,0 +1,6 @@
+OPERATOR=1
+OPAR=2
+CPAR=3
+NUMBER=4
+'('=2
+')'=3
