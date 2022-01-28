@@ -1,7 +1,5 @@
-// Generated from language/recognition/MathematicalExpr.g4 by ANTLR 4.9.3
+// Generated from antlr/MathematicalExpr.g4 by ANTLR 4.9.3
 package me.calculator.model.antlr;
-import me.calculator.model.antlr.MathematicalExprVisitor;
-import language.recognition.*;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -19,19 +17,61 @@ public class MathematicalExprBaseVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBinaryOperationExpr(MathematicalExprParser.BinaryOperationExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStart(MathematicalExprParser.StartContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNumbeExpr(MathematicalExprParser.NumbeExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitModExpr(MathematicalExprParser.ModExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParenthesedExpr(MathematicalExprParser.ParenthesedExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumberExpr(MathematicalExprParser.NumberExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDivExpr(MathematicalExprParser.DivExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMinusExpr(MathematicalExprParser.MinusExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMultExpr(MathematicalExprParser.MultExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPlusExpr(MathematicalExprParser.PlusExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIntAtom(MathematicalExprParser.IntAtomContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDoubleAtom(MathematicalExprParser.DoubleAtomContext ctx) { return visitChildren(ctx); }
 }

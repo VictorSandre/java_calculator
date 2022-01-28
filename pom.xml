@@ -19,8 +19,7 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
-        </dependency>
-        
+        </dependency>    
         <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
@@ -46,8 +45,7 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins>
-            
+        <plugins>          
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
@@ -65,7 +63,6 @@
                     </execution>
                 </executions>
             </plugin>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

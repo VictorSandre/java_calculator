@@ -7,17 +7,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import me.calculator.model.Calculator;
 
 public class CalculatorController {
 
-    public CalculatorController() {
-        mathematicalExpressionInputOrder = new LinkedList<String>();
-    }
+    private Calculator calculator;
     
     @FXML
     private Label mathematicalExpressionLabel;
     
     private LinkedList<String> mathematicalExpressionInputOrder;
+    
+    public CalculatorController() {
+        mathematicalExpressionInputOrder = new LinkedList<String>();
+        calculator = new Calculator();
+    }
     
     @FXML
     private void addZeroToExpression() throws IOException {
@@ -88,11 +92,11 @@ public class CalculatorController {
     private void addDivisionToExpression() throws IOException {
         addStringToMathematicalExpression("/");
     }
-    
         
     @FXML
     private void computeResult() throws IOException {
-        throw new UnsupportedOperationException("unsupported yet");
+        calculator.getMathematicalExprResult(concatMathematicalExpressionValues());
+        //throw new UnsupportedOperationException("unsupported yet");
     }
     
     @FXML

@@ -1,6 +1,5 @@
-// Generated from language/recognition/MathematicalExpr.g4 by ANTLR 4.9.3
+// Generated from antlr/MathematicalExpr.g4 by ANTLR 4.9.3
 package me.calculator.model.antlr;
-import language.recognition.*;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -12,24 +11,65 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface MathematicalExprVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by the {@code binaryOperationExpr}
-	 * labeled alternative in {@link MathematicalExprParser#expression}.
+	 * Visit a parse tree produced by {@link MathematicalExprParser#start}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBinaryOperationExpr(MathematicalExprParser.BinaryOperationExprContext ctx);
+	T visitStart(MathematicalExprParser.StartContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code numbeExpr}
+	 * Visit a parse tree produced by the {@code modExpr}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumbeExpr(MathematicalExprParser.NumbeExprContext ctx);
+	T visitModExpr(MathematicalExprParser.ModExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code parenthesedExpr}
+	 * Visit a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParenthesedExpr(MathematicalExprParser.ParenthesedExprContext ctx);
+	T visitNumberExpr(MathematicalExprParser.NumberExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code divExpr}
+	 * labeled alternative in {@link MathematicalExprParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDivExpr(MathematicalExprParser.DivExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code minusExpr}
+	 * labeled alternative in {@link MathematicalExprParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMinusExpr(MathematicalExprParser.MinusExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code multExpr}
+	 * labeled alternative in {@link MathematicalExprParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultExpr(MathematicalExprParser.MultExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code plusExpr}
+	 * labeled alternative in {@link MathematicalExprParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlusExpr(MathematicalExprParser.PlusExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code intAtom}
+	 * labeled alternative in {@link MathematicalExprParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIntAtom(MathematicalExprParser.IntAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code doubleAtom}
+	 * labeled alternative in {@link MathematicalExprParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoubleAtom(MathematicalExprParser.DoubleAtomContext ctx);
 }
