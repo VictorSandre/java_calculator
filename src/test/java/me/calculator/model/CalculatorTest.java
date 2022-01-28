@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package me.calculator.model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author user
- */
 public class CalculatorTest {
     
     private String mathematicalExpression;
@@ -95,12 +86,12 @@ public class CalculatorTest {
     }
     
     @Test
-    //TODO implement visitor division function
     public void testEvaluateExprDivisionByZero() {
         mathematicalExpression = "4/0";
-        result = calculator.evaluateExpr(mathematicalExpression);
         
-        fail("unsupported yet");
+        Exception exception = assertThrows(ArithmeticException.class, () -> {
+            calculator.evaluateExpr(mathematicalExpression);
+        }); 
     }
     
     @Test
@@ -113,12 +104,66 @@ public class CalculatorTest {
     }
     
     @Test
-    //TODO implement visitor modulo function
-    public void testEvaluateExprModuloByZero() {
-        mathematicalExpression = "4%0";
+    public void testEvaluateExprParenthesedPositiveNumber() {
+        mathematicalExpression = "(4)";
+        Double expectedResult = 4.0;
         result = calculator.evaluateExpr(mathematicalExpression);
         
-        fail("unsupported yet");
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    public void testEvaluateExprParenthesedNegativeNumber() {
+        mathematicalExpression = "(-4)";
+        Double expectedResult = -4.0;
+        result = calculator.evaluateExpr(mathematicalExpression);
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    public void testEvaluateExprParenthesedMultPlusNumber() {
+        mathematicalExpression = "(-2 * 5) + 14";
+        Double expectedResult = 4.0;
+        result = calculator.evaluateExpr(mathematicalExpression);
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    public void testEvaluateExprUnparenthesedPriorityMultPlus() {
+        mathematicalExpression = "-2 * 5 + 14";
+        Double expectedResult = 4.0;
+        result = calculator.evaluateExpr(mathematicalExpression);
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    public void testEvaluateExprUnparenthesedPiorityMultOnDiv() {
+        mathematicalExpression = "10/2*5";
+        Double expectedResult = 25.0;
+        result = calculator.evaluateExpr(mathematicalExpression);
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    public void testEvaluateExprUnparenthesedPiorityDivOnMult() {
+        mathematicalExpression = "10*2/10*2";
+        Double expectedResult = 4.0;
+        result = calculator.evaluateExpr(mathematicalExpression);
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    public void testEvaluateExprModuloByZero() {
+        mathematicalExpression = "4%0";
+
+        Exception exception = assertThrows(ArithmeticException.class, () -> {
+            calculator.evaluateExpr(mathematicalExpression);
+        }); 
     }
     
     @Test
@@ -133,11 +178,9 @@ public class CalculatorTest {
     @Test
     //TODO implement calculator error handeling
     public void testEvaluateExprWithWrongGrammar() {
-        mathematicalExpression = "4//0";
+        mathematicalExpression = "4//8";
         result = calculator.evaluateExpr(mathematicalExpression);
         
         fail("unsupported yet");
-    }
-    
-    
+    }   
 }
