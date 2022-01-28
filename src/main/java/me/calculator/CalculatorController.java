@@ -1,17 +1,14 @@
 package me.calculator;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import me.calculator.model.Calculator;
 
 public class CalculatorController {
 
-    private Calculator calculator;
+    private final Calculator calculator;
     
     @FXML
     private Label mathematicalExpressionLabel;
@@ -19,7 +16,7 @@ public class CalculatorController {
     private LinkedList<String> mathematicalExpressionInputOrder;
     
     public CalculatorController() {
-        mathematicalExpressionInputOrder = new LinkedList<String>();
+        mathematicalExpressionInputOrder = new LinkedList<>();
         calculator = new Calculator();
     }
     
@@ -95,7 +92,7 @@ public class CalculatorController {
         
     @FXML
     private void computeResult() throws IOException {
-        calculator.getMathematicalExprResult(concatMathematicalExpressionValues());
+        calculator.getResult(concatMathematicalExpressionValues());
         //throw new UnsupportedOperationException("unsupported yet");
     }
     

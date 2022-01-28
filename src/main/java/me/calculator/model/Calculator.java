@@ -25,6 +25,7 @@ public class Calculator {
     public Calculator() {
     }
 
+    // TODO handle error during lexing
     private CommonTokenStream lexing(String input) {
         MathematicalExprLexer lexer;
         
@@ -32,16 +33,29 @@ public class Calculator {
         return new CommonTokenStream(lexer);
     }
     
+    // TODO handle error during parsing
     private void parse(CommonTokenStream tokens) {
         parser = new MathematicalExprParser(tokens);
         parseTree = parser.start();
     }
     
-    public double getMathematicalExprResult(String mathematicalExpr) {
-
+    //TODO handle error like div by zero
+    //TODO make this function private or refactor it in a new class 
+    // in order to test it
+    public Double evaluateExpr(String mathematicalExpr) {
         parse(lexing(mathematicalExpr));
         Double result = new Visitor().visit(parseTree);
-        System.out.println("RESSSS"+result);
-        return 0;
+        return result;
+    }
+    
+    public String getResult(String mathematicalExpr)
+    {
+        try {
+            Double result = evaluateExpr(mathematicalExpr);
+            return result.toString();
+        } catch (Exception e) {
+            // TODO see if i return more explicit eror to view
+            return "Error";
+        }
     }
 }

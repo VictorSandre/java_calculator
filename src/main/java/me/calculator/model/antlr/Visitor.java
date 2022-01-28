@@ -5,8 +5,6 @@
  */
 package me.calculator.model.antlr;
 
-import me.calculator.model.antlr.MathematicalExprParser;
-
 /**
  *
  * @author user
