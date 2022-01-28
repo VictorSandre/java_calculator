@@ -24,7 +24,7 @@ public class MathematicalExprBaseVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitModExpr(MathematicalExprParser.ModExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMultTypeOperation(MathematicalExprParser.MultTypeOperationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -38,28 +38,21 @@ public class MathematicalExprBaseVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDivExpr(MathematicalExprParser.DivExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNegativeNumber(MathematicalExprParser.NegativeNumberContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMinusExpr(MathematicalExprParser.MinusExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusTypeOperation(MathematicalExprParser.PlusTypeOperationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultExpr(MathematicalExprParser.MultExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitPlusExpr(MathematicalExprParser.PlusExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParenthesedExpr(MathematicalExprParser.ParenthesedExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -74,4 +67,18 @@ public class MathematicalExprBaseVisitor<T> extends AbstractParseTreeVisitor<T> 
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitDoubleAtom(MathematicalExprParser.DoubleAtomContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMultTypeOperator(MathematicalExprParser.MultTypeOperatorContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPlusTypeOperator(MathematicalExprParser.PlusTypeOperatorContext ctx) { return visitChildren(ctx); }
 }

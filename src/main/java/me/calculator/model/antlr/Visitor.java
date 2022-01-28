@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package me.calculator.model.antlr;
 
-/**
- *
- * @author user
- */
-public class Visitor extends MathematicalExprBaseVisitor<Double>{
+import me.calculator.model.antlr.MathematicalExprParser;
 
+public class Visitor extends MathematicalExprBaseVisitor<Double>{
+    
     @Override
     public Double visitStart(MathematicalExprParser.StartContext ctx) {
         return visit(ctx.expression());
@@ -27,17 +20,48 @@ public class Visitor extends MathematicalExprBaseVisitor<Double>{
     }
 
     @Override
-    public Double visitPlusExpr(MathematicalExprParser.PlusExprContext ctx) {
-        return (visit(ctx.expression(0)) + visit(ctx.expression(1)));
-    }
-
-    @Override
-    public Double visitMinusExpr(MathematicalExprParser.MinusExprContext ctx) {
-        return (visit(ctx.expression(0)) - visit(ctx.expression(1)));
-    }
-
-    @Override
     public Double visitNumberExpr(MathematicalExprParser.NumberExprContext ctx) {
         return super.visit(ctx.number()); 
     }
+
+    @Override
+    public Double visitNegativeNumber(MathematicalExprParser.NegativeNumberContext ctx) {
+        return (super.visit(ctx.number()) * -1.0);
+    }
+
+    @Override
+    public Double visitParenthesedExpr(MathematicalExprParser.ParenthesedExprContext ctx) {
+        return visit(ctx.expression());
+    }
+
+    @Override
+    public Double visitPlusTypeOperation(MathematicalExprParser.PlusTypeOperationContext ctx) {
+        String operator = ctx.plusTypeOperator().getText();
+        if (operator.equals("+"))//TODO find a way to use a const PLUS instead of "+"
+            return (visit(ctx.expression(0)) + visit(ctx.expression(1)));
+        else
+            return (visit(ctx.expression(0)) - visit(ctx.expression(1)));   
+    }
+
+    @Override
+    public Double visitMultTypeOperation(MathematicalExprParser.MultTypeOperationContext ctx) {
+        String operator = ctx.multTypeOperator().getText();
+        if (operator.equals("*"))//TODO find a way to use a const MULT instead of "*"
+            return (visit(ctx.expression(0)) * visit(ctx.expression(1)));
+        else {
+            Double leftMember = visit(ctx.expression(1));
+            if (leftMember == 0)
+                throw new ArithmeticException();
+            else {
+                if (operator.equals("/"))
+                    return (visit(ctx.expression(0)) / visit(ctx.expression(1)));
+                else
+                    return (visit(ctx.expression(0)) % visit(ctx.expression(1)));
+            }
+        }
+    }
+    
+    
+    
+    
 }

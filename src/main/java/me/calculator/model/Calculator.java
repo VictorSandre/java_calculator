@@ -45,6 +45,7 @@ public class Calculator {
     public Double evaluateExpr(String mathematicalExpr) {
         parse(lexing(mathematicalExpr));
         Double result = new Visitor().visit(parseTree);
+        System.out.println("result::" + result);
         return result;
     }
     

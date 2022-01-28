@@ -3,17 +3,28 @@ grammar MathematicalExpr;
 start : expression EOF;
 
 expression
-    : number                       #numberExpr
-    | expression PLUS expression   #plusExpr
-    | expression MINUS expression  #minusExpr
-    | expression MULT expression   #multExpr
-    | expression DIV expression    #divExpr
-    | expression MOD expression    #modExpr
+    : number                                    #numberExpr
+    | MINUS number                              #negativeNumber
+    | OPAR expression CPAR                      #parenthesedExpr
+    | expression multTypeOperator expression    #multTypeOperation
+    | expression plusTypeOperator expression    #plusTypeOperation
     ;
 
 number 
-    : INT                          #intAtom
-    | DOUBLE                       #doubleAtom
+    : INT                            #intAtom
+    | DOUBLE                         #doubleAtom
+    ;
+
+
+multTypeOperator
+    : MULT
+    | DIV
+    | MOD
+    ;
+
+plusTypeOperator
+    : PLUS
+    | MINUS
     ;
 
 PLUS : '+';

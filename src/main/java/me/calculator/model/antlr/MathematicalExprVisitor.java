@@ -17,12 +17,12 @@ public interface MathematicalExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStart(MathematicalExprParser.StartContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code modExpr}
+	 * Visit a parse tree produced by the {@code multTypeOperation}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitModExpr(MathematicalExprParser.ModExprContext ctx);
+	T visitMultTypeOperation(MathematicalExprParser.MultTypeOperationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
@@ -31,33 +31,26 @@ public interface MathematicalExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNumberExpr(MathematicalExprParser.NumberExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code divExpr}
+	 * Visit a parse tree produced by the {@code negativeNumber}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDivExpr(MathematicalExprParser.DivExprContext ctx);
+	T visitNegativeNumber(MathematicalExprParser.NegativeNumberContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code minusExpr}
+	 * Visit a parse tree produced by the {@code plusTypeOperation}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMinusExpr(MathematicalExprParser.MinusExprContext ctx);
+	T visitPlusTypeOperation(MathematicalExprParser.PlusTypeOperationContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code multExpr}
+	 * Visit a parse tree produced by the {@code parenthesedExpr}
 	 * labeled alternative in {@link MathematicalExprParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMultExpr(MathematicalExprParser.MultExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code plusExpr}
-	 * labeled alternative in {@link MathematicalExprParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPlusExpr(MathematicalExprParser.PlusExprContext ctx);
+	T visitParenthesedExpr(MathematicalExprParser.ParenthesedExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code intAtom}
 	 * labeled alternative in {@link MathematicalExprParser#number}.
@@ -72,4 +65,16 @@ public interface MathematicalExprVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDoubleAtom(MathematicalExprParser.DoubleAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MathematicalExprParser#multTypeOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultTypeOperator(MathematicalExprParser.MultTypeOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MathematicalExprParser#plusTypeOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlusTypeOperator(MathematicalExprParser.PlusTypeOperatorContext ctx);
 }
