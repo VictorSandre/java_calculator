@@ -1,5 +1,7 @@
 package me.calculator.model;
 
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -161,26 +163,26 @@ public class CalculatorTest {
     public void testEvaluateExprModuloByZero() {
         mathematicalExpression = "4%0";
 
-        Exception exception = assertThrows(ArithmeticException.class, () -> {
+        assertThrows(ArithmeticException.class, () -> {
             calculator.evaluateExpr(mathematicalExpression);
         }); 
     }
     
     @Test
-    //TODO implement calculator error handeling
     public void testEvaluateExprWithWrongSyntax() {
         mathematicalExpression = "4@2";
-        result = calculator.evaluateExpr(mathematicalExpression);
         
-        fail("unsupported yet");
+        assertThrows(ParseCancellationException.class, () -> {
+            calculator.evaluateExpr(mathematicalExpression);
+        }); 
     }
     
     @Test
-    //TODO implement calculator error handeling
     public void testEvaluateExprWithWrongGrammar() {
         mathematicalExpression = "4//8";
-        result = calculator.evaluateExpr(mathematicalExpression);
-        
-        fail("unsupported yet");
+
+        assertThrows(ParseCancellationException.class, () -> {
+            calculator.evaluateExpr(mathematicalExpression);
+        }); 
     }   
 }
