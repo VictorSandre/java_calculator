@@ -92,8 +92,9 @@ public class CalculatorController {
         
     @FXML
     private void computeResult() throws IOException {
-        calculator.getResult(concatMathematicalExpressionValues());
-        //throw new UnsupportedOperationException("unsupported yet");
+        String result = calculator.getResult(concatMathematicalExpressionValues());
+        clearMathematicalExpression();
+        addStringToMathematicalExpression(result);
     }
     
     @FXML
