@@ -1,7 +1,5 @@
 package me.calculator.model.antlr;
 
-import me.calculator.model.antlr.MathematicalExprParser;
-
 public class Visitor extends MathematicalExprBaseVisitor<Double>{
     
     @Override
@@ -36,32 +34,33 @@ public class Visitor extends MathematicalExprBaseVisitor<Double>{
 
     @Override
     public Double visitPlusTypeOperation(MathematicalExprParser.PlusTypeOperationContext ctx) {
+        Double leftMember = visit(ctx.expression(0));
+        Double rightMember = visit(ctx.expression(1));
         String operator = ctx.plusTypeOperator().getText();
+        
         if (operator.equals("+"))//TODO find a way to use a const PLUS instead of "+"
-            return (visit(ctx.expression(0)) + visit(ctx.expression(1)));
+            return (leftMember + rightMember);
         else
-            return (visit(ctx.expression(0)) - visit(ctx.expression(1)));   
+            return (leftMember - rightMember);   
     }
 
     @Override
     public Double visitMultTypeOperation(MathematicalExprParser.MultTypeOperationContext ctx) {
         String operator = ctx.multTypeOperator().getText();
+        Double leftMember = visit(ctx.expression(0));
+        Double rightMember = visit(ctx.expression(1));
+        
         if (operator.equals("*"))//TODO find a way to use a const MULT instead of "*"
-            return (visit(ctx.expression(0)) * visit(ctx.expression(1)));
+            return (leftMember * rightMember);
         else {
-            Double leftMember = visit(ctx.expression(1));
-            if (leftMember == 0)
+            if (rightMember == 0)
                 throw new ArithmeticException();
             else {
-                if (operator.equals("/"))
-                    return (visit(ctx.expression(0)) / visit(ctx.expression(1)));
-                else
-                    return (visit(ctx.expression(0)) % visit(ctx.expression(1)));
+                if (operator.equals("/"))//TODO find a way to use a const MULT instead of "*"
+                    return (leftMember / rightMember);
+                else //I consider that the operator is equals to the modulo operation
+                    return (leftMember % rightMember);
             }
         }
     }
-    
-    
-    
-    
 }
