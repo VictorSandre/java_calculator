@@ -1,124 +1,59 @@
 package me.calculator;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import me.calculator.controller.TokensList;
 import me.calculator.model.Calculator;
 
-public class CalculatorController {
+public class CalculatorController implements  ListChangeListener<String>{
 
     private final Calculator calculator;
     
+    TokensList mathExprAsTokenList;
+    
     @FXML
     private Label mathematicalExpressionLabel;
-    
-    private LinkedList<String> mathematicalExpressionInputOrder;
-    
+
     public CalculatorController() {
-        mathematicalExpressionInputOrder = new LinkedList<>();
+        mathExprAsTokenList = new TokensList();
+        mathExprAsTokenList.addListener(this);
         calculator = new Calculator();
     }
     
     @FXML
-    private void addZeroToExpression() throws IOException {
-        addStringToMathematicalExpression("0");
-    }
-    
-    @FXML
-    private void addOneToExpression() throws IOException {
-        addStringToMathematicalExpression("1");
-    }
-    
-    @FXML
-    private void addTwoToExpression() throws IOException {
-        addStringToMathematicalExpression("2");
-    }
-    
-    @FXML
-    private void addThreeToExpression() throws IOException {
-        addStringToMathematicalExpression("3");
-    }
-    
-    @FXML
-    private void addFourToExpression() throws IOException {
-        addStringToMathematicalExpression("4");
-    }
-    
-    @FXML
-    private void addFiveToExpression() throws IOException {
-        addStringToMathematicalExpression("5");
-    }
-    
-    @FXML
-    private void addSixToExpression() throws IOException {
-        addStringToMathematicalExpression("6");
-    }
-    
-    @FXML
-    private void addSevenToExpression() throws IOException {
-        addStringToMathematicalExpression("7");
-    }
-    
-    @FXML
-    private void addEightToExpression() throws IOException {
-        addStringToMathematicalExpression("8");
-    }
-    
-    @FXML
-    private void addNineToExpression() throws IOException {
-        addStringToMathematicalExpression("9");
-    }
-    
-    @FXML
-    private void addPlusToExpression() throws IOException {
-        addStringToMathematicalExpression("+");
-    }
-    
-    @FXML
-    private void addMinusToExpression() throws IOException {
-        addStringToMathematicalExpression("-");
-    }
-    
-    @FXML
-    private void addMultiplicationToExpression() throws IOException {
-        addStringToMathematicalExpression("*");
-    }
-    
-    @FXML
-    private void addDivisionToExpression() throws IOException {
-        addStringToMathematicalExpression("/");
+    private void addInputToExpr(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        String input = button.getText();
+        mathExprAsTokenList.add(input);
     }
         
     @FXML
     private void computeResult() throws IOException {
-        String result = calculator.getResult(concatMathematicalExpressionValues());
-        clearMathematicalExpression();
-        addStringToMathematicalExpression(result);
+        String mathExpr = mathExprAsTokenList.concatTokensValues();
+        String result = calculator.getResult(mathExpr);
+        mathExprAsTokenList.clear();
+        mathExprAsTokenList.add(result);
     }
     
     @FXML
     private void clearMathematicalExpression() throws IOException {
-        mathematicalExpressionInputOrder.clear();
-        updateMathematicalExpressionLabel();
-    }
-
-    private void addStringToMathematicalExpression(String input) {
-        mathematicalExpressionInputOrder.add(input);
-        updateMathematicalExpressionLabel();
+        mathExprAsTokenList.clear();
     }
     
     private void updateMathematicalExpressionLabel() {
-        String mathematicalExpression = concatMathematicalExpressionValues();
-        mathematicalExpressionLabel.setText(mathematicalExpression);
+        String mathExpr = mathExprAsTokenList.concatTokensValues();
+        mathematicalExpressionLabel.setText(mathExpr);
     }
-    
-    private String concatMathematicalExpressionValues() {
-        StringBuilder fullMathematicalExpression = new StringBuilder();
-        
-        for (String expression : mathematicalExpressionInputOrder) {
-            fullMathematicalExpression.append(expression);
-        }
-        return fullMathematicalExpression.toString();
+
+
+    @Override
+    public void onChanged(Change<? extends String> arg0) {
+        updateMathematicalExpressionLabel();
     }
 }
