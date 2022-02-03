@@ -1,84 +1,84 @@
-// Generated from antlr/MathematicalExpr.g4 by ANTLR 4.9.3
-package me.calculator.model.antlr;
+// Generated from antlr/MathExpr.g4 by ANTLR 4.9.3
+package me.calculator.model.antlr.generated;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link MathematicalExprVisitor},
+ * This class provides an empty implementation of {@link MathExprVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-public class MathematicalExprBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements MathematicalExprVisitor<T> {
+public class MathExprBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements MathExprVisitor<T> {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStart(MathematicalExprParser.StartContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStart(MathExprParser.StartContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultTypeOperation(MathematicalExprParser.MultTypeOperationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMultTypeOperation(MathExprParser.MultTypeOperationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNumberExpr(MathematicalExprParser.NumberExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumberExpr(MathExprParser.NumberExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNegativeNumber(MathematicalExprParser.NegativeNumberContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNegativeNumber(MathExprParser.NegativeNumberContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPlusTypeOperation(MathematicalExprParser.PlusTypeOperationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusTypeOperation(MathExprParser.PlusTypeOperationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParenthesedExpr(MathematicalExprParser.ParenthesedExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParenthesedExpr(MathExprParser.ParenthesedExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIntAtom(MathematicalExprParser.IntAtomContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIntAtom(MathExprParser.IntAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDoubleAtom(MathematicalExprParser.DoubleAtomContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDoubleAtom(MathExprParser.DoubleAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultTypeOperator(MathematicalExprParser.MultTypeOperatorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMultTypeOperator(MathExprParser.MultTypeOperatorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPlusTypeOperator(MathematicalExprParser.PlusTypeOperatorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPlusTypeOperator(MathExprParser.PlusTypeOperatorContext ctx) { return visitChildren(ctx); }
 }

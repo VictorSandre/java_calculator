@@ -7,7 +7,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/17" 
       xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="me.calculator.CalculatorController"
+      fx:controller="me.calculator.controller.CalculatorController"
       stylesheets="@calculator.css">
     <children>
         <Label fx:id="mathematicalExpressionLabel" text="" />
@@ -64,16 +64,16 @@
                             </children>
                         </HBox>
                     </children>
-               </VBox>
+                </VBox>
             </children>
         </HBox>
 
         <HBox styleClass="control_pad">
-           <children>
-              <Button onAction="#computeResult" text="enter"/>
-              <Button onAction="#clearMathematicalExpression" text="clear"/>
-              <Button onAction="#deleteLastTokenOfMathExpr" text="Del"/>
-           </children>
+            <children>
+                <Button onAction="#computeResult" text="enter"/>
+                <Button onAction="#clearMathematicalExpression" text="clear"/>
+                <Button onAction="#deleteLastTokenOfMathExpr" text="Del"/>
+            </children>
         </HBox> 
     </children>
 </VBox>

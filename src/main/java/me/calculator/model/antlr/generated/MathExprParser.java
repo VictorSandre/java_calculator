@@ -1,5 +1,5 @@
-// Generated from antlr/MathematicalExpr.g4 by ANTLR 4.9.3
-package me.calculator.model.antlr;
+// Generated from antlr/MathExpr.g4 by ANTLR 4.9.3
+package me.calculator.model.antlr.generated;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class MathematicalExprParser extends Parser {
+public class MathExprParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.9.3", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -75,7 +75,7 @@ public class MathematicalExprParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "MathematicalExpr.g4"; }
+	public String getGrammarFileName() { return "MathExpr.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -86,7 +86,7 @@ public class MathematicalExprParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public MathematicalExprParser(TokenStream input) {
+	public MathExprParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -95,14 +95,14 @@ public class MathematicalExprParser extends Parser {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode EOF() { return getToken(MathematicalExprParser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(MathExprParser.EOF, 0); }
 		public StartContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitStart(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitStart(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -154,7 +154,7 @@ public class MathematicalExprParser extends Parser {
 		public MultTypeOperationContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitMultTypeOperation(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitMultTypeOperation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -165,19 +165,19 @@ public class MathematicalExprParser extends Parser {
 		public NumberExprContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitNumberExpr(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitNumberExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NegativeNumberContext extends ExpressionContext {
-		public TerminalNode MINUS() { return getToken(MathematicalExprParser.MINUS, 0); }
+		public TerminalNode MINUS() { return getToken(MathExprParser.MINUS, 0); }
 		public NumberContext number() {
 			return getRuleContext(NumberContext.class,0);
 		}
 		public NegativeNumberContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitNegativeNumber(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitNegativeNumber(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -194,20 +194,20 @@ public class MathematicalExprParser extends Parser {
 		public PlusTypeOperationContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitPlusTypeOperation(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitPlusTypeOperation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ParenthesedExprContext extends ExpressionContext {
-		public TerminalNode OPAR() { return getToken(MathematicalExprParser.OPAR, 0); }
+		public TerminalNode OPAR() { return getToken(MathExprParser.OPAR, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode CPAR() { return getToken(MathematicalExprParser.CPAR, 0); }
+		public TerminalNode CPAR() { return getToken(MathExprParser.CPAR, 0); }
 		public ParenthesedExprContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitParenthesedExpr(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitParenthesedExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -336,20 +336,20 @@ public class MathematicalExprParser extends Parser {
 		}
 	}
 	public static class DoubleAtomContext extends NumberContext {
-		public TerminalNode DOUBLE() { return getToken(MathematicalExprParser.DOUBLE, 0); }
+		public TerminalNode DOUBLE() { return getToken(MathExprParser.DOUBLE, 0); }
 		public DoubleAtomContext(NumberContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitDoubleAtom(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitDoubleAtom(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 	public static class IntAtomContext extends NumberContext {
-		public TerminalNode INT() { return getToken(MathematicalExprParser.INT, 0); }
+		public TerminalNode INT() { return getToken(MathExprParser.INT, 0); }
 		public IntAtomContext(NumberContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitIntAtom(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitIntAtom(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -393,16 +393,16 @@ public class MathematicalExprParser extends Parser {
 	}
 
 	public static class MultTypeOperatorContext extends ParserRuleContext {
-		public TerminalNode MULT() { return getToken(MathematicalExprParser.MULT, 0); }
-		public TerminalNode DIV() { return getToken(MathematicalExprParser.DIV, 0); }
-		public TerminalNode MOD() { return getToken(MathematicalExprParser.MOD, 0); }
+		public TerminalNode MULT() { return getToken(MathExprParser.MULT, 0); }
+		public TerminalNode DIV() { return getToken(MathExprParser.DIV, 0); }
+		public TerminalNode MOD() { return getToken(MathExprParser.MOD, 0); }
 		public MultTypeOperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_multTypeOperator; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitMultTypeOperator(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitMultTypeOperator(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -438,15 +438,15 @@ public class MathematicalExprParser extends Parser {
 	}
 
 	public static class PlusTypeOperatorContext extends ParserRuleContext {
-		public TerminalNode PLUS() { return getToken(MathematicalExprParser.PLUS, 0); }
-		public TerminalNode MINUS() { return getToken(MathematicalExprParser.MINUS, 0); }
+		public TerminalNode PLUS() { return getToken(MathExprParser.PLUS, 0); }
+		public TerminalNode MINUS() { return getToken(MathExprParser.MINUS, 0); }
 		public PlusTypeOperatorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_plusTypeOperator; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathematicalExprVisitor ) return ((MathematicalExprVisitor<? extends T>)visitor).visitPlusTypeOperator(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitPlusTypeOperator(this);
 			else return visitor.visitChildren(this);
 		}
 	}

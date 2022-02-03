@@ -3,7 +3,7 @@ package me.calculator.controller;
 import java.util.LinkedList;
 import javafx.collections.ModifiableObservableListBase;
 
-public class TokensList extends ModifiableObservableListBase<String>{
+public final class TokensList extends ModifiableObservableListBase<String> {
 
     private LinkedList<String> tokenList;
 
@@ -11,17 +11,23 @@ public class TokensList extends ModifiableObservableListBase<String>{
         tokenList = new LinkedList<>();
     }
 
+    /**
+     * This function concatenate all values of a TokensList and return it in
+     * one unique String variable.
+     * @return string variable
+     */
     public String concatTokensValues() {
         StringBuilder fullTokensExpression = new StringBuilder();
-        
-        for (String token : tokenList) 
+
+        for (String token : tokenList) {
             fullTokensExpression.append(token);
-        
+        }
+
         return fullTokensExpression.toString();
     }
 
     @Override
-    public String get(int arg0) {
+    public String get(final int arg0) {
         return tokenList.get(arg0);
     }
 
@@ -31,23 +37,28 @@ public class TokensList extends ModifiableObservableListBase<String>{
     }
 
     @Override
-    protected void doAdd(int arg0, String arg1) {
+    protected void doAdd(final int arg0, final String arg1) {
         tokenList.add(arg0, arg1);
     }
 
     @Override
-    protected String doSet(int arg0, String arg1) {
+    protected String doSet(final int arg0, final String arg1) {
         return tokenList.set(arg0, arg1);
     }
 
     @Override
-    protected String doRemove(int arg0) {
+    protected String doRemove(final int arg0) {
        return tokenList.remove(arg0);
     }
-    
+
+    /**
+     * This function remove the last element of the token list if
+     * it's not empty.
+     */
     public void removeLastToken() {
         int lastTokenPosition = this.size() - 1;
-        if (lastTokenPosition >= 0)
+        if (!tokenList.isEmpty()) {
             this.remove(lastTokenPosition);
+        }
     }
 }

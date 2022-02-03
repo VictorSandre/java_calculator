@@ -1,5 +1,5 @@
-// Generated from antlr/MathematicalExpr.g4 by ANTLR 4.9.3
-package me.calculator.model.antlr;
+// Generated from antlr/MathExpr.g4 by ANTLR 4.9.3
+package me.calculator.model.antlr.generated;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class MathematicalExprLexer extends Lexer {
+public class MathExprLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.9.3", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -80,13 +80,13 @@ public class MathematicalExprLexer extends Lexer {
 	}
 
 
-	public MathematicalExprLexer(CharStream input) {
+	public MathExprLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "MathematicalExpr.g4"; }
+	public String getGrammarFileName() { return "MathExpr.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

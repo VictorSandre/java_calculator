@@ -1,8 +1,7 @@
 package me.calculator.model;
 
-import me.calculator.model.antlr.MathematicalExprErrorListener;
-import me.calculator.model.antlr.MathematicalExprLexer;
-import me.calculator.model.antlr.MathematicalExprParser;
+import me.calculator.model.antlr.generated.MathExprLexer;
+import me.calculator.model.antlr.generated.MathExprParser;
 import me.calculator.model.antlr.Visitor;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CharStreams;
@@ -10,39 +9,56 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+public final class Calculator {
 
-// TODO better way to handle Synatx and semantical errors
-public class Calculator {
+    private CommonTokenStream lexing(final String input) {
+        MathExprLexer lexer;
 
-    private CommonTokenStream tokens;
-    
-    private MathematicalExprParser parser;
-    
-    private ParseTree parseTree;
+        lexer = new MathExprLexer(CharStreams.fromString(input));
 
-    private CommonTokenStream lexing(String input) {
-        MathematicalExprLexer lexer;
-        
-        lexer = new MathematicalExprLexer(CharStreams.fromString(input));
-   
         return new CommonTokenStream(lexer);
     }
-   
-    private void parse(CommonTokenStream tokens) throws ParseCancellationException {
-        parser = new MathematicalExprParser(tokens);
-        parser.setErrorHandler(new BailErrorStrategy());    
-        parseTree = parser.start();
+
+    private ParseTree parse(final CommonTokenStream tokens)
+            throws ParseCancellationException {
+        MathExprParser parser;
+
+        parser = new MathExprParser(tokens);
+        // TODO implement a better way to handle Synatx and semantical errors.
+        parser.setErrorHandler(new BailErrorStrategy());
+
+        return parser.start();
     }
-    
-    /* TODO make this function private or refactor it in a new class 
-     in order to test it */
-    public Double evaluateExpr(String mathematicalExpr) throws ArithmeticException, ParseCancellationException {
-        parse(lexing(mathematicalExpr));
+
+    /* TODO find a way to test this as private function or refactor it in a new
+       class likes an ASTBuilder in order to test it
+       TODO this function does 3 things i have got to explode it in 2 functions.
+    */
+    /**
+     * This function evaluate an Abstract syntax tree (ParseTree) and return a
+     * result or throw error if exception occurs during lexing, parsing or
+     * evaluation.
+     * @param mathematicalExpr
+     * @return value of result of the mathematical expression.
+     * @throws ArithmeticException
+     * @throws ParseCancellationException
+     */
+    public Double evaluateExpr(final String mathematicalExpr)
+            throws ArithmeticException, ParseCancellationException {
+        ParseTree parseTree = parse(lexing(mathematicalExpr));
         return new Visitor().visit(parseTree);
     }
-    
-    public String getResult(String mathematicalExpr)
-    {       
+
+    /**
+     * This method takes a expression as string and try to compute a result
+     * from this expression.
+     * @param mathematicalExpr a string that contain a mathematical expression
+     * that should match with the grammar MathExpr.g4
+     * @return the result of the mathematial expression if lexing, parsing and
+     * evaluation of the builded AST has success. Return the message "Error"
+     * otherwise.
+     */
+    public String getResult(final String mathematicalExpr) {
         try {
             Double result = evaluateExpr(mathematicalExpr);
             return result.toString();

@@ -1,4 +1,4 @@
-grammar MathematicalExpr;
+grammar MathExpr;
 
 start : expression EOF;
 
