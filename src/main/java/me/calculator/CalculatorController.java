@@ -1,13 +1,12 @@
 package me.calculator;
 
 import java.io.IOException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import me.calculator.controller.TokensList;
 import me.calculator.model.Calculator;
 
@@ -19,7 +18,7 @@ public class CalculatorController implements  ListChangeListener<String>{
     
     @FXML
     private Label mathematicalExpressionLabel;
-
+    
     public CalculatorController() {
         mathExprAsTokenList = new TokensList();
         mathExprAsTokenList.addListener(this);
@@ -46,12 +45,17 @@ public class CalculatorController implements  ListChangeListener<String>{
         mathExprAsTokenList.clear();
     }
     
+    @FXML
+    private void deleteTokenInMathExpr() {
+        int lastTokenPosition = mathExprAsTokenList.size() - 1;
+        mathExprAsTokenList.remove(lastTokenPosition);
+    }
+    
     private void updateMathematicalExpressionLabel() {
         String mathExpr = mathExprAsTokenList.concatTokensValues();
         mathematicalExpressionLabel.setText(mathExpr);
     }
-
-
+    
     @Override
     public void onChanged(Change<? extends String> arg0) {
         updateMathematicalExpressionLabel();

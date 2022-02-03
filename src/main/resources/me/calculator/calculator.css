@@ -1,0 +1,30 @@
+.root {
+    -fx-background-color: #b8c2be;
+    -fx-font-size: 25px;
+    -fx-font-family: sans-serif;
+}
+
+Button {
+    -fx-background-color: #b6efd4;
+    -fx-border-color: black;  
+    -fx-border-radius: 5px;
+    -fx-text-alignment: center;
+}
+
+Button:hover {
+    -fx-background-color: #a0ccda;  
+}
+
+.control_pad Button {
+    -fx-background-color: #7ce577;
+}
+
+.control_pad Button:hover {
+    -fx-background-color: #a0ccda;
+}
+
+HBox, VBox {
+    -fx-alignment: center ;
+    -fx-padding: 3px ;
+    -fx-spacing: 3px;
+}

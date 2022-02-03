@@ -2,64 +2,78 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<VBox xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="me.calculator.CalculatorController"
+      stylesheets="@calculator.css">
+    <children>
+        <Label fx:id="mathematicalExpressionLabel" text="" />
+        
+        <HBox>
+            <children>
+                <VBox>
+                    <children>
+                        <HBox>
+                            <children>
+                                <Button text="0" onAction="#addInputToExpr"/>
+                                <Button text="1" onAction="#addInputToExpr"/>
+                                <Button text="2" onAction="#addInputToExpr"/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Button text="3" onAction="#addInputToExpr"/>
+                                <Button text="4" onAction="#addInputToExpr"/>
+                                <Button text="5" onAction="#addInputToExpr"/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Button text="6" onAction="#addInputToExpr"/>
+                                <Button text="7" onAction="#addInputToExpr"/>
+                                <Button text="8" onAction="#addInputToExpr"/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Button text="9" onAction="#addInputToExpr"/>
+                                
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox>
+                    <children>
+                        <HBox>
+                            <children>
+                                <Button text="(" onAction="#addInputToExpr"/>
+                                <Button text=")" onAction="#addInputToExpr"/>
+                                <Button text="." onAction="#addInputToExpr"/>
+                                <Button text="\%" onAction="#addInputToExpr"/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Button text="+" onAction="#addInputToExpr"/>
+                                <Button text="-" onAction="#addInputToExpr"/>
+                                <Button text="*" onAction="#addInputToExpr"/>
+                                <Button text="/" onAction="#addInputToExpr"/>       
+                            </children>
+                        </HBox>
+                    </children>
+               </VBox>
+            </children>
+        </HBox>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" 
-            xmlns="http://javafx.com/javafx/17" 
-            xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="me.calculator.CalculatorController">
-   <top>
-      <Label fx:id="mathematicalExpressionLabel" text="" BorderPane.alignment="CENTER" />
-   </top>
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox id="operationPad" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <HBox prefHeight="27.0" prefWidth="133.0">
-                     <children>
-                        <Button fx:id="inputZero" text="0" onAction="#addInputToExpr"/>
-                        <Button fx:id="inputOne" text="1" onAction="#addInputToExpr"/>
-                        <Button fx:id="inputTwo" text="2" onAction="#addInputToExpr"/>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="inputThree" text="3" onAction="#addInputToExpr"/>
-                        <Button fx:id="inputFour" text="4" onAction="#addInputToExpr"/>
-                        <Button fx:id="inputFive" text="5" onAction="#addInputToExpr"/>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="inputSix" text="6" onAction="#addInputToExpr"/>
-                        <Button fx:id="inputSeven" text="7" onAction="#addInputToExpr"/>
-                        <Button fx:id="inputEight" text="8" onAction="#addInputToExpr"/>
-                     </children>
-                  </HBox>
-                  <Button fx:id="inputNine" text="9" onAction="#addInputToExpr"/>
-               </children>
-            </VBox>
-            <VBox id="numericPad" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Button fx:id="inputPlus" text="+"  onAction="#addInputToExpr"/>
-                  <Button fx:id="inputMinux" text="-"  onAction="#addInputToExpr"/>
-                  <Button fx:id="inputMultiplication" text="*"  onAction="#addInputToExpr"/>
-                  <Button fx:id="inputDivision" text="/"  onAction="#addInputToExpr"/>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </center>
-   <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="compute" text="enter" onAction="#computeResult"/>
-            <Button fx:id="clear" text="clear" onAction="#clearMathematicalExpression"/>
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
+        <HBox styleClass="control_pad">
+           <children>
+              <Button onAction="#computeResult" text="enter"/>
+              <Button onAction="#clearMathematicalExpression" text="clear"/>
+              <Button onAction="#deleteTokenInMathExpr" text="Del"/>
+           </children>
+        </HBox> 
+    </children>
+</VBox>
