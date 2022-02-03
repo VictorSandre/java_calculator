@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
 import me.calculator.controller.TokensList;
 import me.calculator.model.Calculator;
 
@@ -46,9 +45,10 @@ public class CalculatorController implements  ListChangeListener<String>{
     }
     
     @FXML
-    private void deleteTokenInMathExpr() {
+    private void deleteLastTokenOfMathExpr() {
         int lastTokenPosition = mathExprAsTokenList.size() - 1;
-        mathExprAsTokenList.remove(lastTokenPosition);
+        if (lastTokenPosition >= 0)
+            mathExprAsTokenList.remove(lastTokenPosition);
     }
     
     private void updateMathematicalExpressionLabel() {

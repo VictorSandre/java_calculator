@@ -72,7 +72,7 @@
            <children>
               <Button onAction="#computeResult" text="enter"/>
               <Button onAction="#clearMathematicalExpression" text="clear"/>
-              <Button onAction="#deleteTokenInMathExpr" text="Del"/>
+              <Button onAction="#deleteLastTokenOfMathExpr" text="Del"/>
            </children>
         </HBox> 
     </children>
