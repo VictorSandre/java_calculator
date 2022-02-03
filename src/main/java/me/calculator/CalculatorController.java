@@ -46,9 +46,7 @@ public class CalculatorController implements  ListChangeListener<String>{
     
     @FXML
     private void deleteLastTokenOfMathExpr() {
-        int lastTokenPosition = mathExprAsTokenList.size() - 1;
-        if (lastTokenPosition >= 0)
-            mathExprAsTokenList.remove(lastTokenPosition);
+        mathExprAsTokenList.removeLastToken();
     }
     
     private void updateMathematicalExpressionLabel() {

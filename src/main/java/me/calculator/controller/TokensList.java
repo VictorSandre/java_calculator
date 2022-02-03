@@ -1,12 +1,6 @@
 package me.calculator.controller;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.collections.ModifiableObservableListBase;
 
 public class TokensList extends ModifiableObservableListBase<String>{
@@ -50,5 +44,10 @@ public class TokensList extends ModifiableObservableListBase<String>{
     protected String doRemove(int arg0) {
        return tokenList.remove(arg0);
     }
-
+    
+    public void removeLastToken() {
+        int lastTokenPosition = this.size() - 1;
+        if (lastTokenPosition >= 0)
+            this.remove(lastTokenPosition);
+    }
 }
