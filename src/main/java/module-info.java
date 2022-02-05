@@ -6,5 +6,4 @@ module me.calculator {
     exports me.calculator;
 
     requires org.antlr.antlr4.runtime;
-
 }

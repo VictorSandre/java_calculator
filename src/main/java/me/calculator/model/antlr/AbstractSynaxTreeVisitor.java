@@ -3,7 +3,8 @@ package me.calculator.model.antlr;
 import me.calculator.model.antlr.generated.MathExprBaseVisitor;
 import me.calculator.model.antlr.generated.MathExprParser;
 
-public final class Visitor extends MathExprBaseVisitor<Double> {
+public final class AbstractSynaxTreeVisitor
+        extends MathExprBaseVisitor<Double> {
 
     @Override
     public Double visitStart(final MathExprParser.StartContext ctx) {
@@ -11,24 +12,16 @@ public final class Visitor extends MathExprBaseVisitor<Double> {
     }
 
     @Override
-    public Double visitDoubleAtom(final MathExprParser.DoubleAtomContext ctx) {
-        return Double.parseDouble(ctx.DOUBLE().getText());
-    }
-
-    @Override
-    public Double visitIntAtom(final MathExprParser.IntAtomContext ctx) {
-        return Double.parseDouble(ctx.INT().getText());
-    }
-
-    @Override
     public Double visitNumberExpr(final MathExprParser.NumberExprContext ctx) {
-        return super.visit(ctx.number());
+        String numberAsString = ctx.NUMBER().getText();
+        return Double.parseDouble(numberAsString);
     }
 
     @Override
-    public Double visitNegativeNumber(final MathExprParser.NegativeNumberContext
-            ctx) {
-        return (super.visit(ctx.number()) * -1.0);
+    public Double visitNegativeNumber(
+            final MathExprParser.NegativeNumberContext ctx) {
+        Double numberValue = Double.parseDouble(ctx.NUMBER().getText());
+        return (numberValue * -1.0);
     }
 
     @Override
@@ -38,13 +31,13 @@ public final class Visitor extends MathExprBaseVisitor<Double> {
     }
 
     @Override
-    public Double visitPlusTypeOperation(
-            final MathExprParser.PlusTypeOperationContext ctx) {
+    public Double visitAddTypeOperation(
+            final MathExprParser.AddTypeOperationContext ctx) {
         Double leftMember = visit(ctx.expression(0));
         Double rightMember = visit(ctx.expression(1));
-        String operator = ctx.plusTypeOperator().getText();
-        //TODO find a way to use a const PLUS instead of "+"
-        if (operator.equals("+")) {
+        int operator = ctx.operator.getType();
+
+        if (operator == MathExprParser.ADD) {
             return (leftMember + rightMember);
         } else {
             return (leftMember - rightMember);
@@ -54,22 +47,20 @@ public final class Visitor extends MathExprBaseVisitor<Double> {
     @Override
     public Double visitMultTypeOperation(
             final MathExprParser.MultTypeOperationContext ctx) {
-        String operator = ctx.multTypeOperator().getText();
+        int operator = ctx.operator.getType();
         Double leftMember = visit(ctx.expression(0));
         Double rightMember = visit(ctx.expression(1));
-        //TODO find a way to use a const MULT instead of "*"
-        if (operator.equals("*")) {
+
+        if (operator == MathExprParser.MULT) {
             return (leftMember * rightMember);
         } else {
             if (rightMember == 0) {
                 throw new ArithmeticException();
             } else {
-                //TODO find a way to use a const MULT from grammar instead of"*"
-                if (operator.equals("/")) {
+                if (operator == MathExprParser.DIV) {
                     return (leftMember / rightMember);
+                // Else I consider that operator is equals to modulo operation.
                 } else {
-                    // Else I consider that operator is equals to modulo
-                    //operation.
                     return (leftMember % rightMember);
                 }
             }

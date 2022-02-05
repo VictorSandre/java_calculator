@@ -17,13 +17,12 @@ public class MathExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		PLUS=1, MINUS=2, MULT=3, DIV=4, MOD=5, OPAR=6, CPAR=7, WS=8, INT=9, DOUBLE=10;
+		ADD=1, MINUS=2, MULT=3, DIV=4, MOD=5, OPAR=6, CPAR=7, WS=8, NUMBER=9;
 	public static final int
-		RULE_start = 0, RULE_expression = 1, RULE_number = 2, RULE_multTypeOperator = 3, 
-		RULE_plusTypeOperator = 4;
+		RULE_start = 0, RULE_expression = 1;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"start", "expression", "number", "multTypeOperator", "plusTypeOperator"
+			"start", "expression"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -36,8 +35,7 @@ public class MathExprParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "PLUS", "MINUS", "MULT", "DIV", "MOD", "OPAR", "CPAR", "WS", "INT", 
-			"DOUBLE"
+			null, "ADD", "MINUS", "MULT", "DIV", "MOD", "OPAR", "CPAR", "WS", "NUMBER"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -113,9 +111,9 @@ public class MathExprParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(10);
+			setState(4);
 			expression(0);
-			setState(11);
+			setState(5);
 			match(EOF);
 			}
 		}
@@ -142,15 +140,16 @@ public class MathExprParser extends Parser {
 		}
 	}
 	public static class MultTypeOperationContext extends ExpressionContext {
+		public Token operator;
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public MultTypeOperatorContext multTypeOperator() {
-			return getRuleContext(MultTypeOperatorContext.class,0);
-		}
+		public TerminalNode MULT() { return getToken(MathExprParser.MULT, 0); }
+		public TerminalNode DIV() { return getToken(MathExprParser.DIV, 0); }
+		public TerminalNode MOD() { return getToken(MathExprParser.MOD, 0); }
 		public MultTypeOperationContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -159,9 +158,7 @@ public class MathExprParser extends Parser {
 		}
 	}
 	public static class NumberExprContext extends ExpressionContext {
-		public NumberContext number() {
-			return getRuleContext(NumberContext.class,0);
-		}
+		public TerminalNode NUMBER() { return getToken(MathExprParser.NUMBER, 0); }
 		public NumberExprContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -171,9 +168,7 @@ public class MathExprParser extends Parser {
 	}
 	public static class NegativeNumberContext extends ExpressionContext {
 		public TerminalNode MINUS() { return getToken(MathExprParser.MINUS, 0); }
-		public NumberContext number() {
-			return getRuleContext(NumberContext.class,0);
-		}
+		public TerminalNode NUMBER() { return getToken(MathExprParser.NUMBER, 0); }
 		public NegativeNumberContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -181,20 +176,20 @@ public class MathExprParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class PlusTypeOperationContext extends ExpressionContext {
+	public static class AddTypeOperationContext extends ExpressionContext {
+		public Token operator;
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public PlusTypeOperatorContext plusTypeOperator() {
-			return getRuleContext(PlusTypeOperatorContext.class,0);
-		}
-		public PlusTypeOperationContext(ExpressionContext ctx) { copyFrom(ctx); }
+		public TerminalNode ADD() { return getToken(MathExprParser.ADD, 0); }
+		public TerminalNode MINUS() { return getToken(MathExprParser.MINUS, 0); }
+		public AddTypeOperationContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitPlusTypeOperation(this);
+			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitAddTypeOperation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -223,22 +218,22 @@ public class MathExprParser extends Parser {
 		ExpressionContext _prevctx = _localctx;
 		int _startState = 2;
 		enterRecursionRule(_localctx, 2, RULE_expression, _p);
+		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21);
+			setState(15);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case INT:
-			case DOUBLE:
+			case NUMBER:
 				{
 				_localctx = new NumberExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(14);
-				number();
+				setState(8);
+				match(NUMBER);
 				}
 				break;
 			case MINUS:
@@ -246,10 +241,10 @@ public class MathExprParser extends Parser {
 				_localctx = new NegativeNumberContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(15);
+				setState(9);
 				match(MINUS);
-				setState(16);
-				number();
+				setState(10);
+				match(NUMBER);
 				}
 				break;
 			case OPAR:
@@ -257,11 +252,11 @@ public class MathExprParser extends Parser {
 				_localctx = new ParenthesedExprContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(17);
+				setState(11);
 				match(OPAR);
-				setState(18);
+				setState(12);
 				expression(0);
-				setState(19);
+				setState(13);
 				match(CPAR);
 				}
 				break;
@@ -269,7 +264,7 @@ public class MathExprParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(33);
+			setState(25);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -277,37 +272,55 @@ public class MathExprParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(31);
+					setState(23);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 					case 1:
 						{
 						_localctx = new MultTypeOperationContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(23);
+						setState(17);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(24);
-						multTypeOperator();
-						setState(25);
+						setState(18);
+						((MultTypeOperationContext)_localctx).operator = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MULT) | (1L << DIV) | (1L << MOD))) != 0)) ) {
+							((MultTypeOperationContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(19);
 						expression(3);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new PlusTypeOperationContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new AddTypeOperationContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(27);
+						setState(20);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(28);
-						plusTypeOperator();
-						setState(29);
+						setState(21);
+						((AddTypeOperationContext)_localctx).operator = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !(_la==ADD || _la==MINUS) ) {
+							((AddTypeOperationContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(22);
 						expression(2);
 						}
 						break;
 					}
 					} 
 				}
-				setState(35);
+				setState(27);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			}
@@ -320,163 +333,6 @@ public class MathExprParser extends Parser {
 		}
 		finally {
 			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class NumberContext extends ParserRuleContext {
-		public NumberContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_number; }
-	 
-		public NumberContext() { }
-		public void copyFrom(NumberContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class DoubleAtomContext extends NumberContext {
-		public TerminalNode DOUBLE() { return getToken(MathExprParser.DOUBLE, 0); }
-		public DoubleAtomContext(NumberContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitDoubleAtom(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class IntAtomContext extends NumberContext {
-		public TerminalNode INT() { return getToken(MathExprParser.INT, 0); }
-		public IntAtomContext(NumberContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitIntAtom(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final NumberContext number() throws RecognitionException {
-		NumberContext _localctx = new NumberContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_number);
-		try {
-			setState(38);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case INT:
-				_localctx = new IntAtomContext(_localctx);
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(36);
-				match(INT);
-				}
-				break;
-			case DOUBLE:
-				_localctx = new DoubleAtomContext(_localctx);
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(37);
-				match(DOUBLE);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class MultTypeOperatorContext extends ParserRuleContext {
-		public TerminalNode MULT() { return getToken(MathExprParser.MULT, 0); }
-		public TerminalNode DIV() { return getToken(MathExprParser.DIV, 0); }
-		public TerminalNode MOD() { return getToken(MathExprParser.MOD, 0); }
-		public MultTypeOperatorContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_multTypeOperator; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitMultTypeOperator(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final MultTypeOperatorContext multTypeOperator() throws RecognitionException {
-		MultTypeOperatorContext _localctx = new MultTypeOperatorContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_multTypeOperator);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(40);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MULT) | (1L << DIV) | (1L << MOD))) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class PlusTypeOperatorContext extends ParserRuleContext {
-		public TerminalNode PLUS() { return getToken(MathExprParser.PLUS, 0); }
-		public TerminalNode MINUS() { return getToken(MathExprParser.MINUS, 0); }
-		public PlusTypeOperatorContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_plusTypeOperator; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MathExprVisitor ) return ((MathExprVisitor<? extends T>)visitor).visitPlusTypeOperator(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final PlusTypeOperatorContext plusTypeOperator() throws RecognitionException {
-		PlusTypeOperatorContext _localctx = new PlusTypeOperatorContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_plusTypeOperator);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(42);
-			_la = _input.LA(1);
-			if ( !(_la==PLUS || _la==MINUS) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
 		}
 		return _localctx;
 	}
@@ -499,18 +355,16 @@ public class MathExprParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f/\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\5\3\30\n\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3\"\n\3\f\3\16\3%\13\3\3"+
-		"\4\3\4\5\4)\n\4\3\5\3\5\3\6\3\6\3\6\2\3\4\7\2\4\6\b\n\2\4\3\2\5\7\3\2"+
-		"\3\4\2.\2\f\3\2\2\2\4\27\3\2\2\2\6(\3\2\2\2\b*\3\2\2\2\n,\3\2\2\2\f\r"+
-		"\5\4\3\2\r\16\7\2\2\3\16\3\3\2\2\2\17\20\b\3\1\2\20\30\5\6\4\2\21\22\7"+
-		"\4\2\2\22\30\5\6\4\2\23\24\7\b\2\2\24\25\5\4\3\2\25\26\7\t\2\2\26\30\3"+
-		"\2\2\2\27\17\3\2\2\2\27\21\3\2\2\2\27\23\3\2\2\2\30#\3\2\2\2\31\32\f\4"+
-		"\2\2\32\33\5\b\5\2\33\34\5\4\3\5\34\"\3\2\2\2\35\36\f\3\2\2\36\37\5\n"+
-		"\6\2\37 \5\4\3\4 \"\3\2\2\2!\31\3\2\2\2!\35\3\2\2\2\"%\3\2\2\2#!\3\2\2"+
-		"\2#$\3\2\2\2$\5\3\2\2\2%#\3\2\2\2&)\7\13\2\2\')\7\f\2\2(&\3\2\2\2(\'\3"+
-		"\2\2\2)\7\3\2\2\2*+\t\2\2\2+\t\3\2\2\2,-\t\3\2\2-\13\3\2\2\2\6\27!#(";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13\37\4\2\t\2\4\3"+
+		"\t\3\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\22\n\3\3\3\3\3\3"+
+		"\3\3\3\3\3\3\3\7\3\32\n\3\f\3\16\3\35\13\3\3\3\2\3\4\4\2\4\2\4\3\2\5\7"+
+		"\3\2\3\4\2 \2\6\3\2\2\2\4\21\3\2\2\2\6\7\5\4\3\2\7\b\7\2\2\3\b\3\3\2\2"+
+		"\2\t\n\b\3\1\2\n\22\7\13\2\2\13\f\7\4\2\2\f\22\7\13\2\2\r\16\7\b\2\2\16"+
+		"\17\5\4\3\2\17\20\7\t\2\2\20\22\3\2\2\2\21\t\3\2\2\2\21\13\3\2\2\2\21"+
+		"\r\3\2\2\2\22\33\3\2\2\2\23\24\f\4\2\2\24\25\t\2\2\2\25\32\5\4\3\5\26"+
+		"\27\f\3\2\2\27\30\t\3\2\2\30\32\5\4\3\4\31\23\3\2\2\2\31\26\3\2\2\2\32"+
+		"\35\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2\34\5\3\2\2\2\35\33\3\2\2\2\5\21"+
+		"\31\33";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

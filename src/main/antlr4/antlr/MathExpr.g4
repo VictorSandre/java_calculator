@@ -3,31 +3,14 @@ grammar MathExpr;
 start : expression EOF;
 
 expression
-    : number                                    #numberExpr
-    | MINUS number                              #negativeNumber
-    | OPAR expression CPAR                      #parenthesedExpr
-    | expression multTypeOperator expression    #multTypeOperation
-    | expression plusTypeOperator expression    #plusTypeOperation
+    : NUMBER                                           #numberExpr
+    | MINUS NUMBER                                     #negativeNumber
+    | OPAR expression CPAR                             #parenthesedExpr
+    | expression operator=(MULT|DIV|MOD) expression    #multTypeOperation
+    | expression operator=(ADD|MINUS) expression       #addTypeOperation
     ;
 
-number 
-    : INT                            #intAtom
-    | DOUBLE                         #doubleAtom
-    ;
-
-
-multTypeOperator
-    : MULT
-    | DIV
-    | MOD
-    ;
-
-plusTypeOperator
-    : PLUS
-    | MINUS
-    ;
-
-PLUS : '+';
+ADD : '+';
 MINUS: '-';
 MULT : '*';
 DIV  : '/';
@@ -35,5 +18,4 @@ MOD  : '%';
 OPAR : '(';
 CPAR : ')';
 WS   : [ \n\t\r]+ -> skip;
-INT  : [0-9]+;
-DOUBLE : [0-9]+'.'[0-9]+;
+NUMBER : ([0-9]+'.'[0-9]+|[0-9]+);
