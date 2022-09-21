@@ -1,11 +1,12 @@
 package me.calculator.model;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {
-    
-    private String mathExpression;
 
     private final Calculator calculator;
 
@@ -13,130 +14,158 @@ public class CalculatorTest {
         calculator = new Calculator();
     }
 
-    @Test
-    public void testGetResultWithOnePositiveNumber() {
-        mathExpression = "4";
-        assertExprCalculatedResultEquals(mathExpression, "4.0");
+    @ParameterizedTest(name = "test with atomic expression : {0} sould return {1}")
+    @CsvSource(
+            {
+                    "4,4.0",
+                    "-4,-4.0"
+            }
+    )
+    public void testGetResult_WithAtomicNumber_ReturnNumber(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
     }
 
     @Test
-    public void testGetResultWithOneNegativeNumber() {
-        mathExpression = "-4";
-        assertExprCalculatedResultEquals(mathExpression, "-4.0");
+    public void testGetResult_WithPlusExpr_ReturnResultOfAddition() {
+        //When
+        String calculatorResult = calculator.getResult("4+5");
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo("9.0");
+    }
+
+    @ParameterizedTest(name = "getResult from substraction : {0} should return {1}")
+    @CsvSource(
+            {
+                    "5-4,1.0",
+                    "4-5,-1.0",
+            }
+    )
+    public void testGetResult_WithMinusExpr_ReturnExpectedResult(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
+    }
+
+    @ParameterizedTest(name = "getResult from multiplication : {0} should return {1}")
+    @CsvSource(
+            {
+                    "4*5,20.0",
+                    "-4*0,-0.0",
+                    "4*0,0.0"
+            }
+    )
+    public void testGetResult_WithMultiplicationExpr_ReturnExpectedResult(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
+    }
+
+    @ParameterizedTest(name = "getResult from division : {0} should return {1}")
+    @CsvSource(
+            {
+                    "4/2,2.0",
+                    "-4/2,-2.0",
+                    "3/2,1.5"
+            }
+    )
+    public void testGetResult_WithDivisionExpr_ReturnExpectedResult(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
     }
 
     @Test
-    public void testGetResultWithPlusExpr() {
-        mathExpression = "4+5";
-        assertExprCalculatedResultEquals(mathExpression, "9.0");
+    public void testGetResult_WithModuloExpr_ReturnExpectedResult() {
+        //When
+        String calculatorResult = calculator.getResult("4%2");
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo("0.0");
+    }
+
+    @Tag("CalculationOnExpressionReturnError")
+    @ParameterizedTest(name = "getResult operation : {0} should return {1}")
+    @CsvSource(
+            {
+                    "4/0,Error",
+                    "-4%0,Error",
+            }
+    )
+    public void testGetResult_WithWrongArithmicalExpr_ReturnErrorMessage(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
     }
 
     @Test
-    public void testGetResultResultPositiveWithMinusExpr() {
-        mathExpression = "5-4";
-        assertExprCalculatedResultEquals(mathExpression, "1.0");
+    @Tag("CalculationOnExpressionReturnError")
+    public void testGetResult_WithWrongSyntaxExpr_ReturnErrorMessage() {
+        //When
+        String calculatorResult = calculator.getResult("4@2");
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo("Error");
     }
 
-    @Test
-    public void testGetResultResultFromMinusMinusExpr() {
-        mathExpression = "5--4";
-        assertExprCalculatedResultEquals(mathExpression, "9.0");
+    @Tag("CalculationOnExpressionReturnError")
+    @ParameterizedTest(name = "getResult operation : {0} should return {1}")
+    @CsvSource(
+            {
+                    "4//8,Error",
+                    "4---2,Error",
+                    "4+.2,Error",
+                    ".2,Error"
+            }
+    )
+    //TODO change grammar because 4 +.2 should return 4.2 or Grammar error
+    public void testGetResult_WithWrongGrammarExpr_ReturnErrorMessage(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
+
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
     }
 
-    @Test
-    public void testGetResultResultNegativeWithMinusExpr() {
-        mathExpression = "4-5";
-        assertExprCalculatedResultEquals(mathExpression, "-1.0");
-    }
+    @ParameterizedTest(name = "getResult operation : {0} should return {1}")
+    @CsvSource(
+            {
+                    "5--4,9.0",
+                    "(4),4.0",
+                    "(-4),-4.0",
+                    "(-2 * 5) + 14,4.0",
+                    "-2 * 5 + 14,4.0",
+                    "10/2*5,25.0",
+                    "10*2/10*2,4.0"
+            }
+    )
+    public void testGetResult_WithPriority_ReturnExpectedResult(String mathExpressionInput, String expectedCalculatorResult) {
+        //When
+        String calculatorResult = calculator.getResult(mathExpressionInput);
 
-    @Test
-    public void testGetResultMultiplication() {
-        mathExpression = "4*5";
-        assertExprCalculatedResultEquals(mathExpression, "20.0");
-    }
-
-    @Test
-    public void testGetResultMultiplicationByZero() {
-        mathExpression = "4*0";
-        assertExprCalculatedResultEquals(mathExpression, "0.0");
-    }
-
-    @Test
-    public void testGetResultDivision() {
-        mathExpression = "4/2";
-        assertExprCalculatedResultEquals(mathExpression, "2.0");
-    }
-
-    @Test
-    public void testGetResultDivisionByZero() {
-        mathExpression = "4/0";
-        assertExprCalculatedResultEquals(mathExpression, "Error");
-    }
-
-    @Test
-    public void testGetResultModulo() {
-        mathExpression = "4%2";
-        assertExprCalculatedResultEquals(mathExpression, "0.0");
-    }
-
-    @Test
-    public void testGestGetResultParenthesedPositiveNumber() {
-        mathExpression = "(4)";
-        assertExprCalculatedResultEquals(mathExpression, "4.0");
-
-    }
-
-    @Test
-    public void testGestGetResultParenthesedNegativeNumber() {
-        mathExpression = "(-4)";
-        assertExprCalculatedResultEquals(mathExpression, "-4.0");
-    }
-
-    @Test
-    public void testGetResultParenthesedMultPlusNumber() {
-        mathExpression = "(-2 * 5) + 14";
-        assertExprCalculatedResultEquals(mathExpression, "4.0");
-    }
-
-    @Test
-    public void testGetResultUnparenthesedPriorityMultPlus() {
-        mathExpression = "-2 * 5 + 14";
-        assertExprCalculatedResultEquals(mathExpression, "4.0");
-    }
-
-    @Test
-    public void testGetResultUnparenthesedPiorityMultOnDiv() {
-        mathExpression = "10/2*5";
-        assertExprCalculatedResultEquals(mathExpression, "25.0");
-    }
-
-    @Test
-    public void testGetResultUnparenthesedPiorityDivOnMult() {
-        mathExpression = "10*2/10*2";
-        assertExprCalculatedResultEquals(mathExpression, "4.0");
-    }
-
-    @Test
-    public void testGetResultModuloByZero() {
-        mathExpression = "4%0";
-        assertExprCalculatedResultEquals(mathExpression, "Error");
-    }
-
-    @Test
-    public void testGetResultWithWrongSyntax() {
-        mathExpression = "4@2";
-        assertExprCalculatedResultEquals(mathExpression, "Error");
-    }
-
-    @Test
-    public void testGetResultWithWrongGrammar() {
-        mathExpression = "4//8";
-        assertExprCalculatedResultEquals(mathExpression, "Error");
-    }
-
-    private void assertExprCalculatedResultEquals(final String expr,
-            final String expected) {
-        String result = calculator.getResult(mathExpression);
-        assertEquals(expected.toString(), result);
+        //Then
+        assertThat(calculatorResult)
+                .isEqualTo(expectedCalculatorResult);
     }
 }

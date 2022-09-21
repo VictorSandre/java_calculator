@@ -23,7 +23,7 @@ public final class Calculator {
             Double result = evaluateExpr(ast);
             return result.toString();
         } catch (ArithmeticException | ParseCancellationException e) {
-            // TODO see if i return more explicit eror to view
+            // TODO define if I return more explicit error to the view
             return "Error";
         }
     }
