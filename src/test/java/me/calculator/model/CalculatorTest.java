@@ -138,7 +138,6 @@ public class CalculatorTest {
                     ".2,Error"
             }
     )
-    //TODO change grammar because 4 +.2 should return 4.2 or Grammar error
     public void testGetResult_WithWrongGrammarExpr_ReturnErrorMessage(String mathExpressionInput, String expectedCalculatorResult) {
         //When
         String calculatorResult = calculator.getResult(mathExpressionInput);

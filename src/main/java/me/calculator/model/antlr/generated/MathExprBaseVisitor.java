@@ -1,4 +1,4 @@
-// Generated from antlr/MathExpr.g4 by ANTLR 4.9.3
+// Generated from antlr\MathExpr.g4 by ANTLR 4.9.3
 package me.calculator.model.antlr.generated;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

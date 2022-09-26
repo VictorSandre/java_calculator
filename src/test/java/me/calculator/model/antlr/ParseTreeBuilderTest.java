@@ -42,5 +42,5 @@ public class ParseTreeBuilderTest {
         assertThrows(ParseCancellationException.class, () -> {
             astBuilder.buildAstFromExpr(mathematicalExpression);
         }); 
-    }   
+    }
 }

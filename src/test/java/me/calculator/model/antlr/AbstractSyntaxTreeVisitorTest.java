@@ -10,10 +10,9 @@ import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.Token;
 import static org.assertj.core.api.Assertions.assertThat;
 
-// TODO refactor every tests.
-public class AbstractSynaxTreeVisitorTest {
+public class AbstractSyntaxTreeVisitorTest {
     
-    private final AbstractSynaxTreeVisitor astVisitor = new AbstractSynaxTreeVisitor();
+    private final AbstractSyntaxTreeVisitor astVisitor = new AbstractSyntaxTreeVisitor();
 
     @Test
     public void testVisitNumberExpr_WithAtomicNumber_ReturnNumber() {

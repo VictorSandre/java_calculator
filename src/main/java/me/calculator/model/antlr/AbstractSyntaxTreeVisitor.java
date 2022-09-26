@@ -3,7 +3,7 @@ package me.calculator.model.antlr;
 import me.calculator.model.antlr.generated.MathExprBaseVisitor;
 import me.calculator.model.antlr.generated.MathExprParser;
 
-public final class AbstractSynaxTreeVisitor
+public final class AbstractSyntaxTreeVisitor
         extends MathExprBaseVisitor<Double> {
 
     @Override

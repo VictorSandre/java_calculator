@@ -1,13 +1,10 @@
-// Generated from antlr/MathExpr.g4 by ANTLR 4.9.3
+// Generated from antlr\MathExpr.g4 by ANTLR 4.9.3
 package me.calculator.model.antlr.generated;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MathExprParser extends Parser {
@@ -17,7 +14,7 @@ public class MathExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		ADD=1, MINUS=2, MULT=3, DIV=4, MOD=5, OPAR=6, CPAR=7, WS=8, NUMBER=9;
+		ADD=1, MINUS=2, MULT=3, DIV=4, MOD=5, OPAR=6, CPAR=7, DOT=8, WS=9, NUMBER=10;
 	public static final int
 		RULE_start = 0, RULE_expression = 1;
 	private static String[] makeRuleNames() {
@@ -29,13 +26,14 @@ public class MathExprParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'+'", "'-'", "'*'", "'/'", "'%'", "'('", "')'"
+			null, "'+'", "'-'", "'*'", "'/'", "'%'", "'('", "')'", "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "ADD", "MINUS", "MULT", "DIV", "MOD", "OPAR", "CPAR", "WS", "NUMBER"
+			null, "ADD", "MINUS", "MULT", "DIV", "MOD", "OPAR", "CPAR", "DOT", "WS", 
+			"NUMBER"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -355,11 +353,11 @@ public class MathExprParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13\37\4\2\t\2\4\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f\37\4\2\t\2\4\3"+
 		"\t\3\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\22\n\3\3\3\3\3\3"+
 		"\3\3\3\3\3\3\3\7\3\32\n\3\f\3\16\3\35\13\3\3\3\2\3\4\4\2\4\2\4\3\2\5\7"+
 		"\3\2\3\4\2 \2\6\3\2\2\2\4\21\3\2\2\2\6\7\5\4\3\2\7\b\7\2\2\3\b\3\3\2\2"+
-		"\2\t\n\b\3\1\2\n\22\7\13\2\2\13\f\7\4\2\2\f\22\7\13\2\2\r\16\7\b\2\2\16"+
+		"\2\t\n\b\3\1\2\n\22\7\f\2\2\13\f\7\4\2\2\f\22\7\f\2\2\r\16\7\b\2\2\16"+
 		"\17\5\4\3\2\17\20\7\t\2\2\20\22\3\2\2\2\21\t\3\2\2\2\21\13\3\2\2\2\21"+
 		"\r\3\2\2\2\22\33\3\2\2\2\23\24\f\4\2\2\24\25\t\2\2\2\25\32\5\4\3\5\26"+
 		"\27\f\3\2\2\27\30\t\3\2\2\30\32\5\4\3\4\31\23\3\2\2\2\31\26\3\2\2\2\32"+

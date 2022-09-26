@@ -1,6 +1,6 @@
 package me.calculator.model;
 
-import me.calculator.model.antlr.AbstractSynaxTreeVisitor;
+import me.calculator.model.antlr.AbstractSyntaxTreeVisitor;
 import me.calculator.model.antlr.ParseTreeBuilder;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -30,6 +30,6 @@ public final class Calculator {
 
     private Double evaluateExpr(final ParseTree ast) 
             throws ArithmeticException {
-        return new AbstractSynaxTreeVisitor().visit(ast);
+        return new AbstractSyntaxTreeVisitor().visit(ast);
     }
 }
