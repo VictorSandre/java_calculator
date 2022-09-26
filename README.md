@@ -67,13 +67,11 @@ You already have read my code. You have some time to share with me and you think
     - Add Buttons to store all previous mathematical expression in a history with vertical key
   - **Controller :**
     - Test the view with testFx or something else.
-  - **Tests :**
-    - Refactor existing test properly and update it with use of Mokito to respect F.I.R.S.T principle.
+  - **Project structure :**
+    - Clean the maven POMs and project structure.
   - **Model :**
-    - Implement a better error management for the lexer and te parser that differenciate Syntax errors and Semmentical ones.
+    - Implement a better error management for the lexer and te parser that differenciate Syntax errors and Semmentical ones and test it.
     - Remove print of Parser and Lexer error messages into the console.
-  - **Fix**
-    - Fix the error when ìmput is like ` x + .y ` in the grammar
 <a name="project-structure"></a>
 ## Project structure
 ```bash
