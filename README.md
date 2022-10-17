@@ -5,22 +5,20 @@
   * [Goal of the project](#goal-of-the-project)
   * [Technologies used](#technologies-used)
 * [How to run the calculator](#how-to-run-the-calculator)
-* [Want to change the code ?](#want-to-change-the-code-?)
-  * [Want to improve the existing code ?](#want-to-improve-the-existing-code-?)
-  * [How to add function to the calculator via ANTLR](#how-to-add-function-to-the-calculator)
+* [Want to improve the existing code ?](#want-to-improve-the-existing-code-?)
 * [Features to add in future](#features-to-add-in-future)
 * [Project structure](#project-structure)
 * [License & copyrights](#licence)
 
 <a name="description-of-the-project"></a>
 ## Description of the project
-This project is a very light calculator that can do basic arithmical operations. This project was build in a way to be robust to changements.
+This project is a very light calculator that can do basic arithmetical operations. This project was build in a way to be robust to changes.
 
 ![preview](./readme/calculator_preview1.png)
 
 <a name="goal-of-the-project"></a>
 ### Goal of this project
-I spend some time without coding so I made this project to see what I can do and to get back on tracks by baby steps before doing bigger personal projects.
+I spend some time without coding, so I made this project to see what I can do and to get back on tracks by baby steps before doing bigger personal projects.
 The main goal of this project was still to betteren myself with tests.
 
 <a name="technologies-used"></a>
@@ -42,24 +40,13 @@ Here are the technologies used for this project :
  mvn javafx:run
 ```
 
-<a name="want-to-change-the-code-?"></a>
-## Want to change the code ?
-
-<a name="how-to-add-function-to-the-calculator"></a>
-### How to add function to the calculator via ANTLR :
-
-If you want to add functions to calculator (like cos/sin/tan as unary functions), you have to follow these steps :
- - Update the gramar of the calculator in the file  `./src/main/antlr4/antlr/MathExpr.g4`
- - Use <abbr title="Another Tool for Language Recognition">ANTLR4</abbr>-maven-plugin via the command `$mvn generate-sources` to generate the Lexer, Parser and Visitor files associated to your new grammar.
- - Replace the file of the repository  *src/main/java/me/calculator/model/antlr/generated* by the files previously generated (if you don't want to manually update packages names, place a header tag in the grammar).
- - Update the AbstractSyntaxTreeVisitor and AbstractSyntaxTreeBuilder files in src/main/java/me/calculator/model/antlr folder.
-
 <a name="want-to-improve-the-existing-code-?"></a>
 ### Want to improve the existing code ?
-You already have read my code. You have some time to share with me and you think that some parts of my code stink and can be improved ? Please fire an issue to tell me where and how you would betteren my code.
+You already have read my code. You have some time to share with me, and you think that some parts of my code stink and can be improved ? Please fire an issue to tell me where and how you would betteren my code.
+If you want to add some rules to the grammar to recognize cosines function for example [read this](./calculatorservice/README.md)
 
 <a name="features-to-add-in-future"></a>
-## Features to add in future.
+## Features to add in the future.
   - **View :**
     - Make nested fxml for numeric/operation pads in view
     - Bind every button with it's associated key properly.
@@ -68,9 +55,9 @@ You already have read my code. You have some time to share with me and you think
   - **Controller :**
     - Test the view with testFx or something else.
   - **Project structure :**
-    - Clean the maven POMs and project structure.
+    - Clean the maven POMs and project structure with dependency managements.
   - **Model :**
-    - Implement a better error management for the lexer and te parser that differenciate Syntax errors and Semmentical ones and test it.
+    - Implement a better error management for the lexer and te parser that differentiate Syntax errors and Semantical ones and test it.
     - Remove print of Parser and Lexer error messages into the console.
 <a name="project-structure"></a>
 ## Project structure
@@ -126,4 +113,4 @@ You already have read my code. You have some time to share with me and you think
 <a name="licence"></a>
 ## License & copyrights
 
-This project is aviable under the [MIT License](./readme/licence)
+This project is available under the [MIT License](LICENCE)
