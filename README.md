@@ -37,7 +37,6 @@ Here are the technologies used for this project :
  ```
 - You can finally run the project with :
 ```bash
- mvn javafx:run
 ```
 
 <a name="want-to-improve-the-existing-code-?"></a>
@@ -56,6 +55,8 @@ If you want to add some rules to the grammar to recognize cosines function for e
     - Test the view with testFx or something else.
   - **Project structure :**
     - Clean the maven POMs and project structure with dependency managements.
+    - README -> CHANGE PROJECT STRUCTURE
+    - README -> command line to run the project
   - **Model :**
     - Implement a better error management for the lexer and te parser that differentiate Syntax errors and Semantical ones and test it.
     - Remove print of Parser and Lexer error messages into the console.
